@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, render_template        #std imprting flask class and render template so we can start to use html seperatley form code
 
 app = Flask(__name__)                           #std    creating an instance of the class with the variable name app 
@@ -11,16 +12,20 @@ def index():
 
 @app.route("/about")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def about():
-    return render_template("about.html")    
+    thorindata =[]                                #empty array to hold values when json file is read in  
+    with open("/data/company.json", "r") as json_data:    #std to open the json file
+        thorindata = json.load(json_data)               #std to assignt he json data to our array
+
+    return render_template("about.html", page_title="About", company_data_from_json=throrindata)        #companyvar is creating a new variable to hold the json values that we cna pass through   
 
 
 @app.route("/contact")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def contact():
-    return render_template("contact.html")        
+    return render_template("contact.html", page_title="contact")        
 
 @app.route("/careers")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def careers():
-    return render_template("careers.html")  
+    return render_template("careers.html", page_title="careers")  
 
 
 if __name__ =="__main__":                       #std 

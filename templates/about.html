@@ -1,5 +1,80 @@
 {% extends "base.html" %}     <!--std   saying use base.html as my template-->
    
 {% block content %}            <!-- place this in the block content area in base.html-->
-<h1>About Page using base.html</h1>
+  
+{% for number in list_of_numbers %}   <!-- for each item in the numbers list give them the variable number and do the below references the run.py  which is our data in this example-->
+        <p>{{ number }}</p>
+    {% endfor %}
+{{ company_data_from_json }}
+<h2>{{page_title}}</h2>        <!-- this is pulling in form the run.py -- page_title-->
+<p>
+    The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest in
+    recapturing his long lost family inheritance. (Thorin's grandfather had been the King under the Mountain when Smaug
+    came and took it.) Remembering that he had once known an adventurous Hobbit on his travels in the Shire, Gandalf
+    decided to add Bilbo to their company because he knew that stealth and cunning were preferable to force. Gandalf
+    also believed that someone like Bilbo could keep the sometimes prideful and stubborn Dwarves from rash action. The
+    superstitious Dwarves also considered thirteen to be an unlucky number, and as Gandalf had planned to leave on other
+    business, welcomed a fourteenth to fill into their party.
+</p>
+<div class="row featurette">     <!--bootstrap styling this apparently is a 12 column layout -->
+    <div class="col-md-7">           <!--bootstrap styling  column occupying 7 spaces... -->   
+        <h3>Thorin himself</h3>
+        <p>
+            Thorin II "Oakenshield", eventually called King under the Mountain or Mountain King[1], was the son of
+            Thráin II, the older brother of Frerin and Dís, the grandson of King Thrór and the uncle of Fíli and Kíli.
+            Thorin was best known for his deeds as leader of a company that infiltrated the lost Kingdom under the
+            Mountain to take it back from Smaug and for leading an alliance of Men, Dwarves, and Elves in the Battle of
+            Five Armies.
+        </p>
+    </div>
+    <div class="col-md-5">                <!-- occupying 5 spaces -->
+        <img src="https://static.wikia.nocookie.net/lotr/images/7/76/ThorinTDOMTextlessPoster.jpg" alt="thorin image">
+    </div>
+</div>
+<div class="row featurette">
+    <div class="col-md-5">
+        <img src="https://static.wikia.nocookie.net/lotr/images/8/86/KiliPoster.jpeg" alt="fili form thorin">
+    </div>
+    <div class="col-md-7">
+        <h3>Fili more info</h3>
+        <p>
+            Fíli and Kíli were nephews of Thorin, who was the elder brother of their mother Dís. They were also nephews
+            of Frerin, grandsons of Thráin II, and great-grandsons of Thrór. Fíli's most distinguishing feature was his
+            long nose, the longest of any of the Dwarves in Thorin's company.[2]
+
+            As the youngest Dwarves, Fíli and Kíli had the sharpest eyes, and were often sent scouting or searching. It
+            was they that found the Front Porch while in the Misty Mountains.[3]
+
+            With the other Dwarves, Fíli and Kíli encountered spiders and were later imprisoned by the Elvenking
+            Thranduil.[4] They escaped the cells thanks to Bilbo, traveling down the river in barrels until they reached
+            Lake-town.[5] The brothers accompanied Thorin and Bilbo to Lake-town while the others rested by the
+            river.[6]
+
+            At the feet of the Lonely Mountain, Fíli and Kíli scouted Ravenhill and found the Front Gate with Balin and
+            Bilbo. Also, with Bilbo, they found the side-door leading into the mountain.[7]
+
+            Both brothers were killed while defending the mortally wounded Thorin Oakenshield in the Battle of Five
+            Armies, and all three were buried with honor.[8]
+        </p>
+    </div>
+</div>
+<div class="row featurette">
+    <div class="col-md-7">
+        <h3>Dwalin</h3>
+        <p>
+            Born in TA 2772, two years after the dragon Smaug had desolated Erebor, Dwalin was the son of Fundin and
+            younger brother of Balin. After fighting in the Battle of Azanulbizar at the age of 27, Dwalin accompanied
+            Thráin II and Thorin Oakenshield to settle peacefully in the northern Ered Luin.
+
+            Later in TA 2841, Dwalin, along with his brother Balin, and a few others accompanied Thráin when he left the
+            Ered Luin on a Quest to reclaim Erebor. The small party was dogged by the emissaries of Sauron. In TA 2845,
+            Thráin was captured one night when he and his companions sheltered under the eaves of Mirkwood from a black
+            rain. After a fruitless search for their king, the Dwarves gave up and returned to Thorin to inform him the
+            news.
+        </p>
+    </div>
+    <div class="col-md-5">
+        <img src="https://static.wikia.nocookie.net/lotr/images/e/e7/The-Hobbit-Dwalin-In-Pantry.jpg" alt="image of Dwlain in Pantry">
+    </div>
+</div>
 {% endblock %}    
