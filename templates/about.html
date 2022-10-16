@@ -5,8 +5,28 @@
 {% for number in list_of_numbers %}   <!-- for each item in the numbers list give them the variable number and do the below references the run.py  which is our data in this example-->
         <p>{{ number }}</p>
     {% endfor %}
-{{ company_data_from_json }}
+
+<!--{{ company_data_from_json }}  -->    <!-- this literally just outputs our array(s) for the company.json file with the value pairs so includes the object title and then the content-->
+<br>
+{{ company_data_from_json[0] ["name"] }}    <!-- the [0] means first object in the array, ["name"] means get the name value-->                            
+
 <h2>{{page_title}}</h2>        <!-- this is pulling in form the run.py -- page_title-->
+
+
+{% for cast_member in company_data_from_json %}   <!-- for loop to get each member of the cast out of the JSON and displayed in HTML-->
+<div class="row featurette">     <!--bootstrap styling this apparently is a 12 column layout -->
+    <div class="col-md-7">           <!--bootstrap styling  column occupying 7 spaces... -->   
+        <h3>{{cast_member.name}}</h3>                   <!-- name if the object value pair reference using dot notation  -->
+        <p>{{cast_member ["description"]}}</p>          <!-- this works the same as the above but more code-->
+    </div>
+    <div class="col-md-5"> 
+        <img src="{{cast_member.image_source}}" alt="description of image" class="featurette-image image-responsive">     <!-- class is from bootstrap make its look a bit better-->
+     </div>
+    </div>
+     <hr class="featurette divider">
+{% endfor %}
+
+
 <p>
     The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest in
     recapturing his long lost family inheritance. (Thorin's grandfather had been the King under the Mountain when Smaug

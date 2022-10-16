@@ -12,11 +12,11 @@ def index():
 
 @app.route("/about")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def about():
-    thorindata =[]                                #empty array to hold values when json file is read in  
-    with open("/data/company.json", "r") as json_data:    #std to open the json file
-        thorindata = json.load(json_data)               #std to assignt he json data to our array
+    cwdata =[]                                #empty array to hold values when json file is read in  
+    with open("data/company.json", "r") as json_data:    #std to open the json file
+        cwdata = json.load(json_data)               #std to assign the json data to our array
 
-    return render_template("about.html", page_title="About", company_data_from_json=throrindata)        #companyvar is creating a new variable to hold the json values that we cna pass through   
+    return render_template("about.html", page_title="About", list_of_numbers=[1, 2, 3], company_data_from_json=cwdata)        #creating a new variable to hold the json values that we can pass through  to html page  
 
 
 @app.route("/contact")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
