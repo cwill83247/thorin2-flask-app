@@ -3,8 +3,10 @@ import json
 from flask import Flask, render_template, request, flash        #std imprting flask class and render template and request library so we can start to use html seperatley form code
 if os.path.exists("env.py"):
     import env                                  #importing env.py so can be used     
+
 app = Flask(__name__)                           #std    creating an instance of the class with the variable name app 
-app.secret_key =os.environ.get("SECRET_KEY")   #getting key from env.py
+app.secret_key = os.environ.get("SECRET_KEY")   #getting key from env.py
+
 #defining our index file 
 @app.route("/")                                 # std deocrator when we browse to the route "/" triggers the function below index
 def index():
@@ -30,15 +32,12 @@ def about_member(member_name):              # creating function "about_member"  
     return render_template("member.html", member=member)   #??? lost with the member=member  1st member is one being passed to the member.html file  2nd member is from here the member variable. unsure how other one fits in..       
 
                                                      
-
-@app.route("/contact", methods=["GET", "POST"])              #methods = is so page will accept GET and POST requests,   # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
+@app.route("/contact", methods=["GET", "POST"])              #methods = so page will accept GET and POST requests,   # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def contact():
     if request.method == "POST":
-        #request.form(["name"])
-        #request.form(["email"])                                 # print to terminal the contents of that field that were added to the form
-        flash("Thanks {},we have received oyur message !".format(
-            request.form("name")))
-    return render_template("contact.html", page_title="contact")        
+        flash("Thanks {}, we have received the message".format(
+            request.form.get("name")))
+    return render_template("contact.html", page_title="contact")       
 
 @app.route("/careers")                                 # std deocrator and routes--- when we browse to the route "/about" triggers the function below about 
 def careers():
