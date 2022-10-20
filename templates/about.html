@@ -1,29 +1,61 @@
-{% extends "base.html" %}     <!--std   saying use base.html as my template-->
-   
-{% block content %}            <!-- place this in the block content area in base.html-->
-  
-{% for number in list_of_numbers %}   <!-- for each item in the numbers list give them the variable number and do the below references the run.py  which is our data in this example-->
-        <p>{{ number }}</p>
-    {% endfor %}
+{% extends "base.html" %}
+<!--std   saying use base.html as my template-->
 
-<!--{{ company_data_from_json }}  -->    <!-- this literally just outputs our array(s) for the company.json file with the value pairs so includes the object title and then the content-->
+{% block content %}
+<!-- place this in the block content area in base.html-->
+
+{% for number in list_of_numbers %}
+<!-- for each item in the numbers list give them the variable number and do the below references the run.py  which is our data in this example-->
+<p>{{ number }}</p>
+{% endfor %}
+
+<!--{{ company_data_from_json }}  -->
+<!-- this literally just outputs our array(s) for the company.json file with the value pairs so includes the object title and then the content-->
 <br>
-{{ company_data_from_json[0] ["name"] }}    <!-- the [0] means first object in the array, ["name"] means get the name value-->                            
+{{ company_data_from_json[0] ["name"] }}
+<!-- the [0] means first object in the array, ["name"] means get the name value-->
 
-<h2>{{page_title}}</h2>        <!-- this is pulling in form the run.py -- page_title-->
+<h2>{{page_title}}</h2> <!-- this is pulling in form the run.py -- page_title-->
 
 
-{% for cast_member in company_data_from_json %}   <!-- for loop to get each member of the cast out of the JSON and displayed in HTML-->
-<div class="row featurette">     <!--bootstrap styling this apparently is a 12 column layout -->
-    <div class="col-md-7">           <!--bootstrap styling  column occupying 7 spaces... -->   
-        <h3>{{cast_member.name}}</h3>                   <!-- name if the object value pair reference using dot notation  -->
-        <p>{{cast_member ["description"]}}</p>          <!-- this works the same as the above but more code-->
+{% for cast_member in company_data_from_json %}
+<!-- for loop to get each member of the cast out of the JSON and displayed in HTML-->
+<div class="row featurette">
+    <!--bootstrap styling this apparently is a 12 column layout -->
+
+    {% if loop.index % 2 !=0 %}
+    <!-- if the index number is not an even number apply this format otherwise do the other-->
+
+    <div class="col-md-7">
+        <!--bootstrap styling  column occupying 7 spaces... -->
+        <h3><a href="/about/{{cast_member.url}}">{{loop.index}}.{{cast_member.name}}</a></h3>
+        <!-- name if the object value pair reference using dot notation  -->
+        <p>{{cast_member ["description"]}}</p> <!-- this works the same as the above but more code-->
     </div>
-    <div class="col-md-5"> 
-        <img src="{{cast_member.image_source}}" alt="description of image" class="featurette-image image-responsive">     <!-- class is from bootstrap make its look a bit better-->
-     </div>
+    <div class="col-md-5">
+        <img src="{{cast_member.image_source}}" alt="description of image" class="featurette-image image-responsive">
+        <!-- class is from bootstrap make its look a bit better-->
     </div>
-     <hr class="featurette divider">
+
+    <hr class="featurette divider">
+    {% else %}
+    <!--without this else it was displaying the characters with odd numbers twice-->
+    <div class="col-md-5">
+        <img src="{{cast_member.image_source}}" alt="description of image" class="featurette-image image-responsive">
+        <!-- class is from bootstrap make its look a bit better-->
+    </div>
+    <div class="col-md-7">
+        <!--bootstrap styling  column occupying 7 spaces... -->
+        <h3><a href="/about/{{cast_member.url}}">{{loop.index}}.{{cast_member.name}}</a></h3>
+        <!-- name if the object value pair reference using dot notation  -->
+        <p>{{cast_member ["description"]}}</p> <!-- this works the same as the above but more code-->
+    </div>
+</div>
+{% if loop.index != loop.length %}
+<hr class="featurette divider">
+{% endif %}
+
+{% endif %}
 {% endfor %}
 
 
@@ -36,8 +68,10 @@
     superstitious Dwarves also considered thirteen to be an unlucky number, and as Gandalf had planned to leave on other
     business, welcomed a fourteenth to fill into their party.
 </p>
-<div class="row featurette">     <!--bootstrap styling this apparently is a 12 column layout -->
-    <div class="col-md-7">           <!--bootstrap styling  column occupying 7 spaces... -->   
+<div class="row featurette">
+    <!--bootstrap styling this apparently is a 12 column layout -->
+    <div class="col-md-7">
+        <!--bootstrap styling  column occupying 7 spaces... -->
         <h3>Thorin himself</h3>
         <p>
             Thorin II "Oakenshield", eventually called King under the Mountain or Mountain King[1], was the son of
@@ -47,7 +81,8 @@
             Five Armies.
         </p>
     </div>
-    <div class="col-md-5">                <!-- occupying 5 spaces -->
+    <div class="col-md-5">
+        <!-- occupying 5 spaces -->
         <img src="https://static.wikia.nocookie.net/lotr/images/7/76/ThorinTDOMTextlessPoster.jpg" alt="thorin image">
     </div>
 </div>
@@ -94,7 +129,8 @@
         </p>
     </div>
     <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/e/e7/The-Hobbit-Dwalin-In-Pantry.jpg" alt="image of Dwlain in Pantry">
+        <img src="https://static.wikia.nocookie.net/lotr/images/e/e7/The-Hobbit-Dwalin-In-Pantry.jpg"
+            alt="image of Dwlain in Pantry">
     </div>
 </div>
-{% endblock %}    
+{% endblock %}
